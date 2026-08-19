@@ -8,3 +8,23 @@ import WindIcon from "../static/WindIcon.svg";
 import RainIcon from "../static/RainIcon.svg";
 import FogIcon from "../static/FogIcon.svg";
 import SnowIcon from "../static/SnowIcon.svg";
+
+const loadMainUpper = (upperMain) => {
+    const header = document.createElement("div");
+    const sky = document.createElement("span");
+    const track = document.createElement("span");
+    sky.textContent = "Sky";
+    track.textContent = "Track";
+    header.classList.add("header");
+    sky.classList.add("highlighted");
+
+    header.appendChild(sky);
+    header.appendChild(track);
+
+    const form = document.createElement("form");
+    form.id = "mainForm";
+    const input = document.createElement("input");
+    input.id = "formInput";
+    input.type = "text";
+    input.autocomplete = "off";
+};
