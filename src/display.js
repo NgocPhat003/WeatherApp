@@ -27,4 +27,18 @@ const loadMainUpper = (upperMain) => {
     input.id = "formInput";
     input.type = "text";
     input.autocomplete = "off";
+    input.placeholder = "search for a location...";
+    const button = document.createElement("button");
+    button.type = "submit";
+    button.classList.add("submitBtn");
+    const buttonImg = document.createElement('img');
+    buttonImg.id = "searchImg";
+    buttonImg.src = searchImage;
+    button.appendChild(buttonImg);
+
+    form.appendChild(input);
+    form.appendChild(button);
+
+    upperMain.appendChild(header);
+    upperMain.appendChild(form);
 };
