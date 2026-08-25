@@ -51,3 +51,20 @@ const openLoadingView = (body) => {
   loadingScreen.appendChild(loadingIcon);
   body.appendChild(loadingScreen);
 };
+
+const closeLoadingView = () => {
+  const loadingScreen = document.querySelector("#loadingScreen");
+
+  if (loadingScreen != Null) loadingScreen.remove();
+};
+
+const loadErrorView = (lowerMain, value) => {
+  lowerMain.replaceChildren();
+  const errorMessage = document.createElement("div");
+  errorMessage.classList.add("errorMessage");
+  errorMessage.textContent = `Unable to find weather data for "${value}"`;
+  lowerMain.appendChild(errorMessage);
+
+  if (!lowerMain.classList.contains("active"))
+    lowerMain.classList.add("active");
+};
