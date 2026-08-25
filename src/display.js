@@ -88,3 +88,18 @@ const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
   if (!lowerMain.classList.contains("active"))
     lowerMain.classList.add("active");
 };
+
+const loadUpperRow = (upperRow, weatherData, tempMeasurement, index) => {
+  upperRow.replaceChildren();
+  const todayInfo = document.createElement("div");
+  todayInfo.classList.add("infoComponent");
+
+  loadTempBtn(upperRow, tempMeasurement);
+
+  const locationLabel = document.createElement("p");
+  locationLabel.classList.add("subHeader");
+  const location = weatherData.resolvedAddress;
+  locationLabel.textContent =
+    location.charAt(0).toUpperCase() + location.slice(1);
+  todayInfo.appendChild(locationLabel);
+};
