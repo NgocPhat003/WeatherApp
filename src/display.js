@@ -68,3 +68,23 @@ const loadErrorView = (lowerMain, value) => {
   if (!lowerMain.classList.contains("active"))
     lowerMain.classList.add("active");
 };
+
+const loadInformationView = (lowerMain, weatherData, tempMeasurement) => {
+  // load upper row
+  lowerMain.replaceChildren();
+  const upperRow = document.createElement("div");
+  upperRow.id = "lowerUpperRow";
+  loadUpperRow(upperRow, weatherData, tempMeasurement, 0);
+
+  lowerMain.appendChild(upperRow);
+
+  // load lower row
+  const lowerRow = document.createElement("div");
+  lowerRow.id = "lowerLowerRow";
+  loadLowerRow(lowerRow, weatherData, tempMeasurement, 0);
+
+  lowerMain.appendChild(lowerRow);
+
+  if (!lowerMain.classList.contains("active"))
+    lowerMain.classList.add("active");
+};
