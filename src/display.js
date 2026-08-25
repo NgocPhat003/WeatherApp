@@ -42,3 +42,12 @@ const loadMainUpper = (upperMain) => {
     upperMain.appendChild(header);
     upperMain.appendChild(form);
 };
+
+const openLoadingView = (body) => {
+  const loadingScreen = document.createElement("div");
+  loadingScreen.id = "loadingScreen";
+  const loadingIcon = document.createElement("div");
+  loadingIcon.id = "loadingIcon";
+  loadingScreen.appendChild(loadingIcon);
+  body.appendChild(loadingScreen);
+};
