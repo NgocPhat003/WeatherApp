@@ -102,4 +102,29 @@ const loadUpperRow = (upperRow, weatherData, tempMeasurement, index) => {
   locationLabel.textContent =
     location.charAt(0).toUpperCase() + location.slice(1);
   todayInfo.appendChild(locationLabel);
+
+  const iconTempLabel = document.createElement("div");
+  iconTempLabel.classList.add("iconTempLabel");
+
+  const iconImg = document.createElement("img");
+  iconImg.classList.add("mainIcon");
+  iconImg.src = iconify(weatherData.days[index].icon);
+  iconTempLabel.appendChild(iconImg)
+  
+  const tempLabel = document.createElement("p");
+  tempLabel.classList.add("mainTemp");
+  tempLabel.textContent =
+    weatherData.days[index].temp + tempStringify(tempMeasurement);
+  iconTempLabel.appendChild(tempLabel);
+
+  const dayWeatherLabel = document.createElement("p");
+  dayWeatherLabel.classList.add("dayWeatherLabel");
+  const todayValue = new Date(weatherData.days[index].datetime);
+  dayWeatherLabel.textContent = `${dayStringify(todayValue.getDay())} | ${weatherData.days[index].conditions}`;
+
+  todayInfo.appendChild(locationLabel);
+  todayInfo.appendChild(iconTempLabel);
+  todayInfo.appendChild(dayWeatherLabel);
+
+  upperRow.appendChild(todayInfo);
 };
