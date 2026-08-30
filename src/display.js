@@ -128,3 +128,17 @@ const loadUpperRow = (upperRow, weatherData, tempMeasurement, index) => {
 
   upperRow.appendChild(todayInfo);
 };
+
+const loadLowerRow = {lowerRow, weatherData, tempMeasurement, index} => {
+  lowerRow.replaceChildren();
+  const fiveDayForecastContainer = document.createElement('div');
+  fiveDayForecastContainer.id = "fiveDayForecastContainer";
+  const fiveDayForecastHeader = document.createElement("p");
+  fiveDayForecastHeader.classList.add("subHeader");
+  fiveDayForecastHeader.textContent = "6 days Forecast";
+  const fiveDayForecastElements = document.createElement("div");
+  fiveDayForecastElements.id = "lowerInfoContainer";
+  populateFiveDays(fiveDayForecastElements, weatherData, tempMeasurement);
+  fiveDayForecastContainer.appendChild(fiveDayForecastHeader);
+  fiveDayForecastElements.appendChild(fiveDayForecastElements);
+};
