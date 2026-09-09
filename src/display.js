@@ -129,7 +129,7 @@ const loadUpperRow = (upperRow, weatherData, tempMeasurement, index) => {
   upperRow.appendChild(todayInfo);
 };
 
-const loadLowerRow = {lowerRow, weatherData, tempMeasurement, index} => {
+const loadLowerRow = (lowerRow, weatherData, tempMeasurement, index) => {
   lowerRow.replaceChildren();
   const fiveDayForecastContainer = document.createElement('div');
   fiveDayForecastContainer.id = "fiveDayForecastContainer";
@@ -141,4 +141,120 @@ const loadLowerRow = {lowerRow, weatherData, tempMeasurement, index} => {
   populateFiveDays(fiveDayForecastElements, weatherData, tempMeasurement);
   fiveDayForecastContainer.appendChild(fiveDayForecastHeader);
   fiveDayForecastElements.appendChild(fiveDayForecastElements);
+
+  const highlightContainer = document.createElement("div");
+  highlightContainer.id = "highlightContainer";
+  const highlightHeader = document.createElement("p");
+  highlightHeader.classList.add("subHeader");
+  highlightHeader.textContent = "Highlights:";
+  const highlightStatsContainer = document.createElement("div");
+  const precipitation = document.createElement("p");
+  precipitation.textContent = `Precipitation: ${weatherData.days[index].precip}%`;
+  const humidity = document.createElement("p");
+  humidity.textContent = `Humidity: ${weatherData.days[index].humidity}%`;
+  const windspeed = document.createElement("p");
+  windspeed.textContent = `Windspeed: ${weatherData.days[index].windspeed}km/h`;
+  highlightStatsContainer.appendChild(precipitation);
+  highlightStatsContainer.appendChild(humidity);
+  highlightStatsContainer.appendChild(windspeed);
+  highlightContainer.appendChild(highlightHeader);
+  highlightContainer.appendChild(highlightStatsContainer);
+
+  lowerRow.appendChild(fiveDayForecastContainer);
+  lowerRow.appendChild(highlightContainer);
+};
+const loadTempBtn = (upperRow, tempMeasurement) => {
+  const btn = document.createElement("button");
+  btn.id = "tempButton";
+  btn.textContent = tempStringify(tempMeasurement);
+  upperRow.appendChild(btn);
+};
+
+const populateFiveDays = (mainContainer, weatherData, tempMeasurement) => {
+  const forecast = 5;
+  for (let i = 0; i <= forecast; i++) {
+    const component = document.createElement("div");
+    component.classList.add("infoComponent");
+    component.classList.add("clickableComponents");
+    component.id = i;
+
+    const day = document.createElement("p");
+    const todayValue = new Date(weatherData.days[i].datetime);
+    day.textContent = `${dayStringify(todayValue.getDay())}`;
+    component.appendChild(day);
+
+    const icon = document.createElement("img");
+    icon.src = iconify(weatherData.days[i].icon);
+    component.appendChild(icon);
+
+    const temp = document.createElement("p");
+    temp.textContent =
+      weatherData.days[i].temp + tempStringify(tempMeasurement);
+    component.appendChild(temp);
+
+    mainContainer.appendChild(component);
+  }
+};
+
+const iconify = (iconCode) => {
+  switch (iconCode) {
+    case "clear-day":
+      return ClearDayIcon;
+    case "clear-night":
+      return ClearNightIcon;
+    case "partly-cloudy-day":
+      return PartlyCloudyDayIcon;
+    case "partly-cloudy-night":
+      return PartlyCloudyNightIcon;
+    case "cloudy":
+      return CloudyIcon;
+    case "rain":
+      return RainIcon;
+    case "snow":
+      return SnowIcon;
+    case "fog":
+      return FogIcon;
+    case "wind":
+      return WindIcon;
+    default:
+      return ClearDayIcon;
+  }
+};
+
+const tempStringify = (tempMeasurement) => {
+  switch (tempMeasurement) {
+    case "metric":
+      return "°C";
+    default:
+      return "°F";
+  }
+};
+
+const dayStringify = (numDay) => {
+  switch (numDay) {
+    case 0:
+      return "Sunday";
+    case 1:
+      return "Monday";
+    case 2:
+      return "Tuesday";
+    case 3:
+      return "Wednesday";
+    case 4:
+      return "Thursday";
+    case 5:
+      return "Friday";
+    default:
+      return "Saturday";
+  }
+};
+
+export {
+  loadMainUpper,
+  openLoadingView,
+  closeLoadingView,
+  loadErrorView,
+  loadInformationView,
+  loadUpperRow,
+  loadLowerRow,
 };
