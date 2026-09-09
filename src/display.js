@@ -55,7 +55,7 @@ const openLoadingView = (body) => {
 const closeLoadingView = () => {
   const loadingScreen = document.querySelector("#loadingScreen");
 
-  if (loadingScreen != Null) loadingScreen.remove();
+  if (loadingScreen != null) loadingScreen.remove();
 };
 
 const loadErrorView = (lowerMain, value) => {
@@ -140,7 +140,7 @@ const loadLowerRow = (lowerRow, weatherData, tempMeasurement, index) => {
   fiveDayForecastElements.id = "lowerInfoContainer";
   populateFiveDays(fiveDayForecastElements, weatherData, tempMeasurement);
   fiveDayForecastContainer.appendChild(fiveDayForecastHeader);
-  fiveDayForecastElements.appendChild(fiveDayForecastElements);
+  fiveDayForecastContainer.appendChild(fiveDayForecastElements);
 
   const highlightContainer = document.createElement("div");
   highlightContainer.id = "highlightContainer";

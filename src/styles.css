@@ -7,3 +7,292 @@
   font-style: normal;
   font-display: swap;
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+html,
+body {
+  /*Color Pallete*/
+  --backgroundDarkBlue: #25383f;
+  --majorLightBlue: #65dcd5;
+  --minorLightBlue: #d9fff4;
+  --fadedBlue: #3a5763;
+  --darkerFadedBlue: #1b292f;
+
+  /*Fonts*/
+  --mainFont: "Merriweather" /*To be altered to merriweather*/;
+
+  background-color: var(--backgroundDarkBlue);
+  box-sizing: border-box;
+  height: 100vh;
+  margin: 0;
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+/*general styles*/
+body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  color: var(--minorLightBlue);
+  font-family: var(--mainFont), Serif;
+  font-size: 3rem;
+}
+
+.subHeader {
+  color: var(--minorLightBlue);
+  font-family: var(--mainFont), Serif;
+  font-size: 2rem;
+}
+
+.highlighted {
+  color: var(--majorLightBlue);
+}
+
+/*mainUpper styles*/
+#mainUpper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: space-evenly;
+  margin-top: 48px;
+  width: 100%;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  flex-basis: 25%;
+  font-family: var(--mainFont), Serif;
+  gap: 4px;
+  width: 100%;
+}
+
+input {
+  background-color: var(--fadedBlue);
+  border: 0;
+  border-radius: 50px 0 0 20px;
+  padding: 8px 1rem 8px 1rem;
+  color: var(--minorLightBlue);
+  width: 25%;
+}
+
+input::placeholder {
+  font-family: var(--mainFont);
+  color: var(--darkerFadedBlue);
+}
+
+button[type="submit"] {
+  background-color: var(--majorLightBlue);
+  border: 0;
+  border-radius: 0 50px 50px 0;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  transform: scale(1.1);
+  filter: brightness(105%);
+}
+
+#searchImg {
+  align-self: center;
+  scale: 0.8;
+}
+
+/* Loading Screen styles */
+#loadingScreen {
+  align-items: center;
+  background-color: black;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  opacity: 0.6;
+  width: 100%;
+}
+
+#loadingIcon {
+  animation: spin 2s linear infinite;
+  border: 8px solid var(--fadedBlue);
+  border-top: 8px solid var(--majorLightBlue);
+  border-radius: 50%;
+  height: 60px;
+  width: 60px;
+}
+
+/* mainLower styles*/
+#mainLower {
+  display: flex;
+  flex: 0;
+}
+
+#mainLower.active {
+  align-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-rows: 1fr 0.7fr;
+  flex: 1;
+  justify-items: center;
+  width: 100%;
+}
+
+/* Error loading styles */
+.errorMessage {
+  animation: fadeIn 600ms 100ms forwards;
+  color: var(--minorLightBlue);
+  font-family: var(--mainFont), serif;
+  font-size: 2rem;
+  opacity: 0;
+  text-align: center;
+}
+
+/*styles of the display of info for today*/
+#lowerUpperRow {
+  animation: fadeIn 600ms 100ms forwards;
+  border-top: 1px var(--minorLightBlue) dashed;
+  border-bottom: 1px var(--minorLightBlue) dashed;
+  margin-top: 24px;
+  padding: 8px 0 0 24px;
+  opacity: 0;
+  width: 100%;
+}
+
+.infoComponent {
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  justify-content: stretch;
+  width: 100%;
+}
+
+.infoComponent > .subHeader {
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.iconTempContainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  height: auto;
+}
+
+.mainIcon {
+  scale: 2;
+}
+
+.mainTemp {
+  color: var(--minorLightBlue);
+  font-family: var(--mainFont), serif;
+  font-size: 3rem;
+}
+
+.infoComponent {
+  color: var(--minorLightBlue);
+  font-family: var(--mainFont), serif;
+  font-size: 1rem;
+  text-align: center;
+}
+
+#tempButton {
+  background-color: var(--fadedBlue);
+  border: 0;
+  border-radius: 50px;
+  color: var(--minorLightBlue);
+  padding: 8px;
+  transition: all 0.3s ease;
+}
+
+#tempButton:hover {
+  box-shadow: 0px 3px 10px black;
+  transform: scale(1.1);
+  filter: brightness(105%);
+}
+
+/* LowerlowerRow */
+#lowerLowerRow {
+  animation: fadeIn 600ms 500ms forwards;
+  align-items: center;
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 0;
+  opacity: 0;
+  width: 100vw;
+}
+
+#fiveDayForecastContainer {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  flex: 0.7;
+}
+
+#fiveDayForecastContainer > .subHeader {
+  padding-left: 2rem;
+}
+
+#lowerInfoContainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#lowerInfoContainer .infoComponent {
+  align-items: center;
+  justify-items: center;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+  scale: 0.8;
+  transition: all 0.3s ease;
+}
+
+#lowerInfoContainer .infoComponent:hover {
+  background-color: var(--darkerFadedBlue);
+  border-radius: 10px;
+  filter: brightness(1.2);
+  scale: 1;
+}
+
+#lowerInfoContainer .infoComponent * {
+  margin: 0;
+}
+
+#highlightContainer {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+}
+
+#highlightContainer > div p {
+  color: var(--minorLightBlue);
+  font-family: var(--mainFont), serif;
+}
+
+/* Disable events for img */
+img {
+  pointer-events: none;
+}
